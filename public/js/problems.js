@@ -1,6 +1,6 @@
 // List options
 var options = {
-    valueNames: ["name", "points", "partial", "languages"]
+    valueNames: ["name", "points", "partial", "languages", { attr: "href", name: "link" }]
 };
 
 // Initialize the list
@@ -17,7 +17,12 @@ socket.on("problems-response", function(problemArr) {
     problemList.clear();
     // Insert it into the table
     problemArr.forEach(function(val, index, arr) {
-        problemList.add({ name: val.name, points: Math.floor(Math.random() * 100), partial: val.partial, languages: convertLanguages(val.languages).join(", ")});
+        problemList.add({ name: val.name, link: "/problem?pid=" + val.pid, points: Math.floor(Math.random() * 100), partial: val.partial, languages: convertLanguages(val.languages).join(", ")});
+    });
+    // Loop through table rows turning names into links
+    $("#problems-table-tbody > tr > td.name.link").each(function() {
+        $(this).html('<a href="' + $(this).attr("href") + '">' + $(this).text() + "</a>");
+        console.log($(this).attr("href"));
     });
 });
 
