@@ -11,6 +11,7 @@ var userSchema = mongoose.Schema({
         name: String
     },
     grader: {
+        firstLogin: Boolean,
         points: Number,
         problemsSolved: [String],
         school: String,
