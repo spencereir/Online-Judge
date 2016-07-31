@@ -50,7 +50,7 @@ module.exports = function (io, sessionMiddleware) {
             Problem.find({}, (err, problems) => {
                 // Check for errors
                 if(err) {
-                    console.log("Error getting list of")
+                    console.log("Error getting list of problems: " + err);
                 } else {
                     // Generate an array of problems
                     var problemArr = [];
@@ -67,7 +67,24 @@ module.exports = function (io, sessionMiddleware) {
                     socket.emit("problems-response", problemArr);
                 }
             })
-        })
+        });
+
+        // Get info for an individual problem
+        socket.on("problem-request", (data) => {
+            // Get problem data
+            Problem.find({pid: data}, (err, problem) => {
+                // Check for errors
+                if(err) {
+                    console.log("Error getting info for problem " + pid + ": " + err);
+                } else if(problem.length > 0) {
+                    // Send the problem data to the user
+                    socket.emit("problem-response", problem[0]);
+                } else {
+                    // The problem doesn't exist, redirect the user
+                    socket.emit("redirect", "/problems");
+                }
+            });
+        });
     });
 
 

@@ -89,6 +89,19 @@ module.exports = function (app, passport, express) {
         res.render("protected/problems.ejs");
     });
 
+    // Individual problem page
+    app.get("/problem", isLoggedIn, (req, res) => {
+        console.log(req.query.pid);
+        // Check if a problem ID was specified
+        if(!req.query.pid) {
+            // Redirect to list of problems
+            res.redirect("/problems");
+        } else {
+            // Render the problem page
+            res.render("protected/problem.ejs", {pid: req.query.pid});
+        }
+    });
+
     // Logout
     app.get("/logout", (req, res) => {
         // Log the session out

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Problems - LCC Online Judge</title>
+    <meta charset="utf-8">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="/css/problem.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header clearfix">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation"><a href="/profile">Profile</a></li>
+                    <li role="presentation"><a href="/users">Users</a></li>
+                    <li role="presentation" class="active"><a href="/problems">Problems</a></li>
+                    <li role="presentation"><a href="/logout">Logout</a></li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">LCC Online Judge</h3>
+        </div>
+
+        <!-- Content -->
+        <div class="jumbotron">
+            <h1 id="problem-name" class="text-center">Loading problem...</h1>
+            <hr>
+            <div class="row">
+
+                <!-- List of problems -->
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 id="problem-info" class="text-center">Loading problem...</h3>
+                        </div>
+                        <div id="problem-statement" class="panel-body">
+                            <h3>Problem Statement</h4>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Scripts -->
+        <!-- jQuery -->
+        <script src="/jquery-3.1.0.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="/bootstrap/js/bootstrap.min.js"></script>
+        <!-- List.js -->
+        <script src="/js/list.min.js"></script>
+        <!-- Socket.io -->
+        <script src="http://localhost:8081/socket.io/socket.io.js"></script>
+        <script src="/js/socket.io/index.js"></script>
+        <!-- Marked -->
+        <script src="/marked.min.js"></script> 
+        <!-- Problem ID -->
+        <script>
+            var pid = "<%= pid %>";
+        </script>
+        <!-- Problem list scripts -->
+        <script src="/js/problem.js"></script>
+</body>
+
+</html>
