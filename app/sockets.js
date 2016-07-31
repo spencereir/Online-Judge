@@ -57,6 +57,7 @@ module.exports = function (io, sessionMiddleware) {
                     problems.forEach((val, index, arr) => {
                         problemArr.push({
                             name: val.name,
+                            pid: val.pid,
                             points: val.points,
                             partial: val.partial,
                             languages: val.languages
