@@ -42,12 +42,24 @@ module.exports = function (app, passport, express) {
         // Check if user is authenticated
         if(req.isAuthenticated()) {
             // Go to the profile page
-            res.redirect("profile");
+            res.redirect("/profile");
         } else {
             // Go to the homepage
             res.render("index.ejs");
         }
     });
+
+    // login page
+    app.get("/login", (req, res) => {
+        // Check if the user is authenticated
+        if(req.isAuthenticated()) {
+            // Go to the profile page
+            res.redirect("/profile");
+        } else {
+            // Go to the login page
+            res.render("login.ejs");
+        }
+    })
 
     // Static files
     app.use(express.static("public"));
