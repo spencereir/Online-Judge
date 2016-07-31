@@ -2,6 +2,8 @@
 var fs = require("fs");
 // User model
 var User = require("./models/user.js");
+// Problems model
+var Problem = require("./models/problem.js");
 
 module.exports = function (io, sessionMiddleware) {
 
@@ -41,6 +43,31 @@ module.exports = function (io, sessionMiddleware) {
                 }
             });
         });
+
+        // Get list of problems
+        socket.on("problems-request", (data) => {
+            // Get array of problems
+            Problem.find({}, (err, problems) => {
+                // Check for errors
+                if(err) {
+                    console.log("Error getting list of")
+                } else {
+                    // Generate an array of problems
+                    var problemArr = [];
+                    problems.forEach((val, index, arr) => {
+                        problemArr.push({
+                            name: val.name,
+                            points: val.points,
+                            partial: val.partial,
+                            languages: val.languages
+                        });
+                    });
+
+                    // Send the array of problems to the socket
+                    socket.emit("problems-response", problemArr);
+                }
+            })
+        })
     });
 
 

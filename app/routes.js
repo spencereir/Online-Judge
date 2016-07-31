@@ -83,6 +83,12 @@ module.exports = function (app, passport, express) {
         res.render("protected/users.ejs");
     });
 
+    // Problems page
+    app.get("/problems", isLoggedIn, (req, res) => {
+        // Render the problems page
+        res.render("protected/problems.ejs");
+    });
+
     // Logout
     app.get("/logout", (req, res) => {
         // Log the session out
