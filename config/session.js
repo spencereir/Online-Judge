@@ -1,5 +1,5 @@
-// Session configuration
-// INSERT SESSION SECRET
+// Database configuration
+// INSERT DATABASE URL
 module.exports = {
-    "sessionSecret": "INSERT SESSION SECRET HERE"
+    "url": "mongodb://localhost/online-judge"
 };

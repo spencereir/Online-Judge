@@ -1,4 +1,5 @@
-// Server configuration
+// Database configuration
+// INSERT DATABASE URL
 module.exports = {
-    "devMode": false
+    "url": "mongodb://localhost/online-judge"
 };
