@@ -47,6 +47,7 @@
     "passport-github": "^1.1.0",
     "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
+    "passport-remember-me": "0.0.1",
     "simple-exist": "^1.0.5",
     "socket.io": "^1.4.8",
     "socket.io-client": "^1.4.8",
