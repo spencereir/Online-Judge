@@ -67,6 +67,9 @@ HackerRank.getLanguages((err, res) => {
     }
 });
 
+// Make mongoose use bluebird as it's promise library
+mongoose.Promise = require("bluebird");
+
 // Connect to database
 mongoose.connect(configDB.url, (err) => {
     // Check if there was an error
