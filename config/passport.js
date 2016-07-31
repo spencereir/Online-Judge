@@ -54,11 +54,16 @@ module.exports = function (passport) {
                         // Create a new user
                         var newUser = new User();
 
-                        // Add all relevant info
+                        // Google login info
                         newUser.google.id = profile.id;
                         newUser.google.token = token;
                         newUser.google.name = profile.displayName;
                         newUser.google.email = profile.emails[0].value;
+
+                        // Grader info
+                        newUser.grader.firstLogin = true;
+                        newUser.grader.points = 0;
+                        newUser.grader.problemsSolved = [];
 
                         // Save the user
                         newUser.save((err) => {
