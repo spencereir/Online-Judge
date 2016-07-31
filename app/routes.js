@@ -30,13 +30,13 @@ exists.exists("languages.json", (data) => {
             }
         });
     } else {
-        console.log(colors.error("Error getting languages. Try running the server again."));
+        console.log(colours.error("Error getting languages. Try running the server again."));
     }
 });
 
 // Express routes
 module.exports = function (app, passport, express) {
-console.log(colors.error("Error getting languages. Try running the server again."));
+
     // Home page
     app.get("/", (req, res) => {
         // Check if user is authenticated
