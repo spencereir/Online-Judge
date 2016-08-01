@@ -41,8 +41,8 @@ module.exports = function (app, passport, express) {
     app.get("/", (req, res) => {
         // Check if user is authenticated
         if(req.isAuthenticated()) {
-            // Go to the profile page
-            res.redirect("/profile");
+            // Go to the settings page
+            res.redirect("/settings");
         } else {
             // Go to the homepage
             res.render("index.ejs");
@@ -53,8 +53,8 @@ module.exports = function (app, passport, express) {
     app.get("/login", (req, res) => {
         // Check if the user is authenticated
         if(req.isAuthenticated()) {
-            // Go to the profile page
-            res.redirect("/profile");
+            // Go to the settings page
+            res.redirect("/settings");
         } else {
             // Go to the login page
             res.render("login.ejs");
@@ -73,7 +73,7 @@ module.exports = function (app, passport, express) {
 
     // Callback after Google completed has authentication
     app.get("/auth/google/callback", passport.authenticate("google", {
-        successRedirect: "/profile", // Redirect to profile
+        successRedirect: "/settings", // Redirect to settings
         failureRedirect: "/" // There was an error, go to homepage
     }));
 
@@ -81,10 +81,10 @@ module.exports = function (app, passport, express) {
     // Other pages
     // ===========
 
-    // Profile page
-    app.get("/profile", isLoggedIn, (req, res) => {
-        // Render the login form with profile info
-        res.render("protected/profile.ejs", {
+    // Settings page
+    app.get("/settings", isLoggedIn, (req, res) => {
+        // Render the settings page
+        res.render("protected/settings.ejs", {
             user: req.user // Get the user from the session
         });
     });
@@ -128,7 +128,7 @@ function isLoggedIn(req, res, next) {
 
     // Check if the user session is authenticated
     if (req.isAuthenticated()) {
-        // Continue to the profile page
+        // Continue to the next page
         return next();
     } else {
         // Redirect to the homepage

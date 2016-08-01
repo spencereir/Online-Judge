@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Profile - LCC Online Judge</title>
+    <title>Settings - LCC Online Judge</title>
     <meta charset="utf-8">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
@@ -13,7 +13,7 @@
         <div class="header clearfix">
             <nav>
                 <ul class="nav nav-pills pull-right">
-                    <li role="presentation" class="active"><a href="/profile">Profile</a></li>
+                    <li role="presentation" class="active"><a href="/profile">Settings</a></li>
                     <li role="presentation"><a href="/users">Users</a></li>
                     <li role="presentation"><a href="/problems">Problems</a></li>
                     <li role="presentation"><a href="/logout">Logout</a></li>
@@ -23,7 +23,7 @@
         </div>
 
         <div class="jumbotron">
-            <h1 class="text-center">Profile Page</h1>
+            <h1 class="text-center">Settings</h1>
             <hr>
             <div class="row">
                 
@@ -31,17 +31,25 @@
                 <div class="col-sm-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="text-center">Google</h3>
+                            <h3 class="pull-left">Account Settings</h3>
+                            <div class="text-right"><button id="account-settings-edit-button" class="btn btn-success">Edit</button></div>
+                            
                         </div>
                         <div class="panel-body">
 
+                            <!-- Display -->
+                            <div id="account-settings-display">
                             <!-- Info -->
                             <p style="word-wrap: break-word; font-size: 16px;">
-                                <strong>id</strong>: <%= user.google.id %><br>
-                                <strong>token</strong>: <%= user.google.token %><br>
                                 <strong>email</strong>: <%= user.google.email %><br>
                                 <strong>name</strong>: <%= user.google.name %><br>
                             </p>
+                            </div>
+
+                            <!-- Change -->
+                            <div id="account-settings-change">
+                                
+                            </div>
 
                         </div>
                     </div>
