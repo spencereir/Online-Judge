@@ -121,9 +121,9 @@ module.exports = function (app, passport, express) {
         res.redirect("/");
     });
 
-    // ===
-    // API
-    // ===
+    // =========
+    // Misc. API
+    // =========
 
     app.post("/changeSettings", isLoggedIn, (req, res) => {
         // Find the user that requested the change
