@@ -12,6 +12,7 @@ var userSchema = mongoose.Schema({
     },
     grader: {
         firstLogin: Boolean,
+        username: String,
         points: Number,
         problemsSolved: [String],
         school: String,
