@@ -60,7 +60,6 @@ module.exports = function (io, sessionMiddleware) {
                             pid: val.pid,
                             points: val.points,
                             partial: val.partial,
-                            statement: val.statement,
                             languages: val.languages
                         });
                     });
