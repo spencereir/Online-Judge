@@ -22,7 +22,6 @@ socket.on("problems-response", function(problemArr) {
     // Loop through table rows turning names into links
     $("#problems-table-tbody > tr > td.name.link").each(function() {
         $(this).html('<a href="' + $(this).attr("href") + '">' + $(this).text() + "</a>");
-        console.log($(this).attr("href"));
     });
 });
 
