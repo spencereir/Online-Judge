@@ -23,4 +23,9 @@ socket.on("profile-response", function(data) {
     } else {
         $("#profile-website").text("not set");
     }
+    if(typeof data.grader.bio != "undefined" || data.grader.bio != "") {
+        $("#profile-bio").text(data.grader.bio);
+    } else {
+        $("#profile-bio").text("not set");
+    }
 });
