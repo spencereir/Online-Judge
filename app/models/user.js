@@ -18,7 +18,8 @@ var userSchema = mongoose.Schema({
         school: String,
         age: Number,
         website: String,
-        country: String
+        country: String,
+        bio: String
     }
 });
 
