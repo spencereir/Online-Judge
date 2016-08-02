@@ -45,7 +45,7 @@ module.exports = function (app, passport, express) {
             res.redirect("/settings");
         } else {
             // Go to the homepage
-            res.render("index.ejs");
+            res.render("pages/index.ejs");
         }
     });
 
@@ -57,7 +57,7 @@ module.exports = function (app, passport, express) {
             res.redirect("/settings");
         } else {
             // Go to the login page
-            res.render("login.ejs");
+            res.render("pages/login.ejs");
         }
     })
 
@@ -84,7 +84,7 @@ module.exports = function (app, passport, express) {
     // Settings page
     app.get("/settings", isLoggedIn, (req, res) => {
         // Render the settings page
-        res.render("protected/settings.ejs", {
+        res.render("pages/protected/settings.ejs", {
             user: req.user // Get the user from the session
         });
     });
@@ -92,13 +92,13 @@ module.exports = function (app, passport, express) {
     // Users page
     app.get("/users", isLoggedIn, (req, res) => {
         // Render the users page
-        res.render("protected/users.ejs");
+        res.render("pages/protected/users.ejs");
     });
 
     // Problems page
     app.get("/problems", isLoggedIn, (req, res) => {
         // Render the problems page
-        res.render("protected/problems.ejs");
+        res.render("pages/protected/problems.ejs");
     });
 
     // Individual problem page
@@ -109,7 +109,7 @@ module.exports = function (app, passport, express) {
             res.redirect("/problems");
         } else {
             // Render the problem page
-            res.render("protected/problem.ejs", {pid: req.query.pid});
+            res.render("pages/protected/problem.ejs", {pid: req.query.pid});
         }
     });
 
