@@ -141,7 +141,15 @@ module.exports = function (app, passport, express) {
         
         // Check for errors
         if(errors.length > 0) {
-            res.redirect("/setup?" + qs.stringify(errors));
+            // Create the query string object
+            var qsObj = {
+                errors: errors,
+                username: req.body.username,
+                age: req.body.age,
+                school: req.body.school,
+                website: req.body.website
+            }
+            res.redirect("/setup?" + qs.stringify(qsObj));
         } else {
             // Find the user
             User.findById(req.user._id, (err, doc) => {

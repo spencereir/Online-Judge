@@ -30,20 +30,26 @@
                         <div class="panel-body">
 
                             <!-- Show any error messages -->
-                            <% if(typeof errorsObj != "undefined" && Object.keys(errorsObj).length > 0) { %>
-                                <% var errors = []; %>
-                                <% for(var index in errorsObj) { %>
-                                    <% errors.push(errorsObj[index]); %>
+                            <% if(typeof errorsObj.errors != "undefined") { %>
+                                <% if(typeof errorsObj.errors == "string") { %>
+                                    <div class="alert alert-danger">
+                                        <p>There were errors with your settings:</p>
+                                        <br>
+                                        <ul>
+                                            <li><%= errorsObj.errors %></li>
+                                        </ul>
+                                    </div>
+                                <% } else if(errorsObj.errors.constructor === Array) { %>
+                                    <div class="alert alert-danger">
+                                        <p>There were errors with your settings:</p>
+                                        <br>
+                                        <ul>
+                                            <% errorsObj.errors.forEach(function(val, index, arr) { %>
+                                                <li><%= val %></li>
+                                            <% }); %>
+                                        </ul>
+                                    </div>
                                 <% } %>
-                                <div class="alert alert-danger">
-                                    <p>There were errors with your settings:</p>
-                                    <br>
-                                    <ul>
-                                        <% errors.forEach(function(val, index, arr) { %>
-                                            <li><%= val %></li>
-                                        <% }); %>
-                                    </ul>
-                                </div>
                             <% } %>
 
                             <!-- Warning message -->
@@ -54,23 +60,23 @@
                                 <!-- Username -->
                                 <div class="form-group">
                                     <label for="username">Username: </label>
-                                    <input class="form-control" type="text" id="username" name="username" placeholder="Username">
+                                    <input class="form-control" type="text" id="username" name="username" placeholder="Username" value="<%= errorsObj.username || ''  %>">
                                     <p class="required-form">* Required</p>
                                 </div>
                                 <!-- Age -->
                                 <div class="form-group">
                                     <label for="age">Age: </label>
-                                    <input class="form-control" type="number" min="0" max="100" id="age" name="age" placeholder="Age">
+                                    <input class="form-control" type="number" min="0" max="100" id="age" name="age" placeholder="Age" value="<%= errorsObj.age || ''  %>">
                                 </div>
                                 <!-- School -->
                                 <div class="form-group">
                                     <label for="school">School: </label>
-                                    <input class="form-control" type="text" id="school" name="school" placeholder="School">
+                                    <input class="form-control" type="text" id="school" name="school" placeholder="School" value="<%= errorsObj.school || ''  %>">
                                 </div>
                                 <!-- Website -->
                                 <div class="form-group">
                                     <label for="website">Website/Social Media: </label>
-                                    <input class="form-control" type="text" id="website" name="website" placeholder="Website/Social Media">
+                                    <input class="form-control" type="text" id="website" name="website" placeholder="Website/Social Media" value="<%= errorsObj.website || ''  %>">
                                 </div>
                                 <hr>
                                 <!-- Submit button -->
