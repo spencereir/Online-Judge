@@ -225,21 +225,43 @@ module.exports = function (app, passport, express) {
                 // Error 404: resource not found
                 res.sendStatus(404);
             } else {
+                // Success
+                var success = false;
                 // Update the user's info
                 switch(req.body.name) {
                     case "name":
-                        // Change the user name
+                        // Change the user's name
                         doc.google.name = req.body.value;
+                        success = true;
+                        break;
+                    case "age":
+                        // Change the user's age
+                        doc.grader.age = req.body.value;
+                        success = true;
+                        break;
+                    case "school":
+                        // Change the user's school
+                        doc.grader.school = req.body.value;
+                        success = true;
+                        break;
+                    case "website":
+                        // Chaneg the user's website
+                        doc.grader.website = req.body.value;
+                        success = true;
                         break;
                     default:
                         // Error 400: bad request
                         res.sendStatus(400);
                         break;
                 }
-                // Save the updated user
-                doc.save();
-                // Send a successful error code
-                res.sendStatus(200);
+                
+                // Check if it was a success
+                if(success) {
+                    // Save the updated user
+                    doc.save();
+                    // Send a successful error code
+                    res.sendStatus(200);
+                }
             }
         });
     });

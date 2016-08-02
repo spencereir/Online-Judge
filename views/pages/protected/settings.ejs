@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Settings - LCC Online Judge</title>
     <meta charset="utf-8">
@@ -9,7 +10,10 @@
     <link rel="stylesheet" href="/bootstrap-editable/css/bootstrap-editable.css">
     <!-- Global custom styles -->
     <link rel="stylesheet" href="/css/main.css">
+    <!-- Settings custom styles -->
+    <link rel="stylesheet" href="/css/settings.css">
 </head>
+
 <body>
     <div class="container">
 
@@ -30,29 +34,65 @@
             <h1 class="text-center">Settings</h1>
             <hr>
             <div class="row">
-                
+                <!-- Profile -->
+                <div class="col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="text-center">Profile Settings</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="profile-settings-display">
+                                <p class="click-to-change"><i>Click on an item to change it.</i></p>
+                                <!-- Info -->
+                                <p class="info">
+                                    <strong>name</strong>: <a href="#" id="name" data-pk="1" data-type="text" data-url="/changeSettings" data-title="Enter your name"><%= user.google.name %></a><br>
+                                    <strong>age</strong>: <a href="#" id="age" data-pk="2" data-type="number" data-url="/changeSettings" data-title="Enter your age">
+                                        <% if(typeof user.grader.age != "undefined") { %>
+                                            <%= user.grader.age %>
+                                        <% } else { %>
+                                            <%= "click to add" %>
+                                        <% } %>
+                                    </a><br>
+                                    <strong>school</strong>: <a href="#" id="school" data-pk="3" data-type="text" data-url="/changeSettings" data-title="Enter your school">
+                                        <% if(typeof user.grader.school != "undefined") { %>
+                                            <%= user.grader.school %>
+                                        <% } else { %>
+                                            <%= "click to add" %>
+                                        <% } %>
+                                    </a><br>
+                                    <strong>website/social media</strong>: <a href="#" id="website" data-type="text" data-pk="3" data-url="/changeSettings" data-title="Enter your website/social media">
+                                        <% if(typeof user.grader.website != "undefined") { %>
+                                            <%= user.grader.website %>
+                                        <% } else { %>
+                                            <%= "click to add" %>
+                                        <% } %>
+                                    </a><br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Settings -->
-                <div class="col-sm-offset-3 col-sm-6">
+                <div class="col-sm-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="text-center">Account Settings</h3>
                         </div>
                         <div class="panel-body">
-
                             <!-- Display -->
                             <div id="account-settings-display">
-                            <!-- Info -->
-                            <p style="word-wrap: break-word; font-size: 16px;">
-                                <strong>email</strong>: <%= user.google.email %><br>
-                                <strong>name</strong>: <a href="#" id="name" data-pk="1" data-url="/changeSettings" data-title="Enter your name"><%= user.google.name %></a><br>
-                            </p>
+                                <!-- Info -->
+                                <p class="info">
+                                    <strong>username</strong>: <%= user.grader.username %><br>
+                                    <strong>email</strong>: <%= user.google.email %><br>
+                                </p>
                             </div>
-
                         </div>
                     </div>
+                </div>
             </div>
         </div>
-
     </div>
 
     <!-- Scripts -->
@@ -68,4 +108,5 @@
     <!-- Custom script -->
     <script src="/js/settings.js"></script>
 </body>
+
 </html>
