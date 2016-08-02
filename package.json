@@ -49,6 +49,7 @@
     "simple-exist": "^1.0.5",
     "socket.io": "^1.4.8",
     "socket.io-client": "^1.4.8",
-    "sync-request": "^3.0.1"
+    "sync-request": "^3.0.1",
+    "validator": "^5.5.0"
   }
 }
