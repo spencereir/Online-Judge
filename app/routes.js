@@ -151,6 +151,19 @@ module.exports = function (app, passport, express) {
             }
         });
     });
+
+    // =========
+    // 404 Error
+    // =========
+
+    // DO NOT PUT ANY ROUTES BELOW THIS ONE
+    // DO NOT PUT ANY ROUTES BELOW THIS ONE
+    // DO NOT PUT ANY ROUTES BELOW THIS ONE
+    
+    app.get("*", (req, res) => {
+        // Page not found, return 404 error
+        res.status(404).send('Error: page not found. <a href="/">Try going home.</a>');
+    });
 };
 
 // Check if a user is logged in
