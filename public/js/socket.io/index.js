@@ -14,5 +14,5 @@ socket.on("connect", function() {
 });
 socket.on("connect_error", function() {
     connected = false;
-    onsole.log("Socket.io connection error!");
+    console.log("Socket.io connection error!");
 });
