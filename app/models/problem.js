@@ -8,7 +8,11 @@ var problemSchema = mongoose.Schema({
     statement: String,
     partial: Boolean,
     points: Number,
-    languages: [String]
+    languages: [String],
+    testcases: {
+        input: [String],
+        output: [String]
+    }
 });
 
 // Create and export the model
