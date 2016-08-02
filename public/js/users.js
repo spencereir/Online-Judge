@@ -1,6 +1,6 @@
 // List options
 var options = {
-    valueNames: ["name", "points"]
+    valueNames: ["username", "name", "school", "points"]
 };
 
 // Initialize the list
@@ -17,32 +17,9 @@ socket.on("users-response", function(userArr) {
     userList.clear();
     // Insert it into the table
     userArr.forEach(function(val, index, arr) {
-        userList.add({ name: val.name, points: Math.floor(Math.random() * 100)});
+        userList.add({ username: val.username, name: val.name, school: val.school, points: val.points});
     });
 });
 
 // Set beginning sort
 userList.sort("points", { order: "desc" });
-
-// Toggle carets
-$("#users-list-thead-name").click(function() {
-    // Hide the other caret
-    $("#users-list-thead-points").find("span").hide();
-    // Show my caret
-    $(this).find("span").show();
-    // Toggle my caret
-    $(this).find("span").toggleClass("glyphicon-triangle-top glyphicon-triangle-bottom");
-    // Toggle the other caret
-    $("#users-list-thead-points").find("span").toggleClass("glyphicon-triangle-bottom glyphicon-triangle-top");
-});
-
-$("#users-list-thead-points").click(function() {
-    // Hide the other caret
-    $("#users-list-thead-name").find("span").hide();
-    // Show my caret
-    $(this).find("span").show();
-    // Toggle my caret
-    $(this).find("span").toggleClass("glyphicon-triangle-bottom glyphicon-triangle-top");
-    // Toggle the other caret
-    $("#users-list-thead-name").find("span").toggleClass("glyphicon-triangle-bottom glyphicon-triangle-top");
-});

@@ -34,7 +34,10 @@ module.exports = function (io, sessionMiddleware) {
                     var userArr = [];
                     users.forEach((val, index, arr) => {
                         userArr.push({
-                            name: val.google.name
+                            username: val.grader.username,
+                            name: val.google.name,
+                            school: val.grader.school,
+                            points: val.grader.points
                         });
                     });
 
