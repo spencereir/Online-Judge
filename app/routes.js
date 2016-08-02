@@ -147,7 +147,8 @@ module.exports = function (app, passport, express) {
                 username: req.body.username,
                 age: req.body.age,
                 school: req.body.school,
-                website: req.body.website
+                website: req.body.website,
+                bio: req.body.bio
             }
             res.redirect("/setup?" + qs.stringify(qsObj));
         } else {
@@ -169,7 +170,10 @@ module.exports = function (app, passport, express) {
                         doc.grader.school = req.body.school;
                     }
                     if(req.body.website != "") {
-                        doc.grader.websitee = req.body.website;
+                        doc.grader.website = req.body.website;
+                    }
+                    if(req.body.bio != "") {
+                        doc.grader.bio = req.body.bio;
                     }
                     doc.grader.firstLogin = false;
                     // Save the user
@@ -265,8 +269,13 @@ module.exports = function (app, passport, express) {
                         success = true;
                         break;
                     case "website":
-                        // Chaneg the user's website
+                        // Change the user's website
                         doc.grader.website = req.body.value;
+                        success = true;
+                        break;
+                    case "bio":
+                        // Change the user's bio
+                        doc.grader.bio = req.body.value;
                         success = true;
                         break;
                     default:

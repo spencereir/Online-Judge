@@ -68,6 +68,13 @@
                                             <%= "click to add" %>
                                         <% } %>
                                     </a><br>
+                                    <strong>bio</strong>: <a href="#" id="bio" data-type="textarea" data-pk="4" data-url="/changeSettings" data-title="Enter your bio">
+                                        <% if(typeof user.grader.bio != "undefined") { %>
+                                            <%= user.grader.bio.trim() _%>
+                                        <% } else { %>
+                                            <%= "click to add" %>
+                                        <% } %>
+                                    </a><br>
                                 </p>
                             </div>
                         </div>
