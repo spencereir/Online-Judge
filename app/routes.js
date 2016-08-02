@@ -103,7 +103,6 @@ module.exports = function (app, passport, express) {
 
     // Individual problem page
     app.get("/problem", isLoggedIn, (req, res) => {
-        console.log(req.query.pid);
         // Check if a problem ID was specified
         if(!req.query.pid) {
             // Redirect to list of problems
@@ -120,6 +119,37 @@ module.exports = function (app, passport, express) {
         req.logout();
         // Redirect to the homepage
         res.redirect("/");
+    });
+
+    // ===
+    // API
+    // ===
+
+    app.post("/changeSettings", isLoggedIn, (req, res) => {
+        // Find the user that requested the change
+        User.findById(req.user._id, (err, doc) => {
+            // Check for errors
+            if(err) {
+                // Error 404: resource not found
+                res.sendStatus(404);
+            } else {
+                // Update the user's info
+                switch(req.body.name) {
+                    case "name":
+                        // Change the user name
+                        doc.google.name = req.body.value;
+                        break;
+                    default:
+                        // Error 400: bad request
+                        res.sendStatus(400);
+                        break;
+                }
+                // Save the updated user
+                doc.save();
+                // Send a successful error code
+                res.sendStatus(200);
+            }
+        });
     });
 };
 

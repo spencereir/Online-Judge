@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <!-- X-editable -->
+    <link rel="stylesheet" href="bootstrap-editable/bootstrap-editable.css">
 </head>
 <body>
     <div class="container">
@@ -42,13 +44,8 @@
                             <!-- Info -->
                             <p style="word-wrap: break-word; font-size: 16px;">
                                 <strong>email</strong>: <%= user.google.email %><br>
-                                <strong>name</strong>: <%= user.google.name %><br>
+                                <strong>name</strong>: <a href="#" id="name" data-pk="1" data-url="/changeSettings" data-title="Enter your name"><%= user.google.name %></a><br>
                             </p>
-                            </div>
-
-                            <!-- Change -->
-                            <div id="account-settings-change">
-                                
                             </div>
 
                         </div>
@@ -63,8 +60,12 @@
     <script src="/jquery-3.1.0.min.js"></script>
     <!-- Bootstrap -->
     <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <!-- X-editable -->
+    <script src="/bootstrap-editable/js/bootstrap-editable.min.js"></script>
     <!-- Socket.io -->
     <script src="http://localhost:8081/socket.io/socket.io.js"></script>
     <script src="/js/socket.io/index.js"></script>
+    <!-- Custom script -->
+    <script src="/js/settings.js"></script>
 </body>
 </html>
