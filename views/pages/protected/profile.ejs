@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Profile - LCC Online Judge</title>
+    <meta charset="utf-8">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <!-- X-editable -->
+    <link rel="stylesheet" href="/bootstrap-editable/css/bootstrap-editable.css">
+    <!-- Global custom styles -->
+    <link rel="stylesheet" href="/css/main.css">
+    <!-- Custom profile styles -->
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header clearfix">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active"><a href="/profile?username=<%= user.grader.username %>">My Profile</a></li>
+                    <li role="presentation"><a href="/settings">Settings</a></li>
+                    <li role="presentation"><a href="/users">Users</a></li>
+                    <li role="presentation"><a href="/problems">Problems</a></li>
+                    <li role="presentation"><a href="/logout">Logout</a></li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">LCC Online Judge</h3>
+        </div>
+
+        <div class="jumbotron">
+            <h1 id="profile-name" class="text-center">Loading User...</h1>
+            <h3 id="profile-points" class="text-center">Loading User...</h3>
+            <hr>
+            <div class="row">
+                <!-- Profile -->
+                <div class="col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="text-center">Info</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p class="info">
+                                <strong>age: </strong><span id="profile-age">Loading User...</span><br>
+                                <strong>school: </strong><span id="profile-school">Loading User...</span><br>
+                                <strong>website/social media: </strong><span id="profile-website">Loading User...</span><br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- jQuery -->
+    <script src="/jquery-3.1.0.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <!-- X-editable -->
+    <script src="/bootstrap-editable/js/bootstrap-editable.min.js"></script>
+    <!-- Socket.io -->
+    <script src="http://localhost:8081/socket.io/socket.io.js"></script>
+    <script src="/js/socket.io/index.js"></script>
+    <!-- Custom scripts -->
+    <script src="/js/profile.js"></script>
+    <!-- Username -->
+    <script>
+        var username = "<%= username %>";
+    </script>
+</body>
+
+</html>

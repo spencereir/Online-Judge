@@ -152,7 +152,7 @@ module.exports = function (app, passport, express) {
                 } else {
                     // Update info
                     if(typeof req.body.username != "undefined") {
-                        doc.grader.username = req.body.username;
+                        doc.grader.username = req.body.username.toLowerCase();
                     }
                     if(req.body.age != "") {
                         doc.grader.age = req.body.age;
@@ -184,13 +184,13 @@ module.exports = function (app, passport, express) {
     // Users page
     app.get("/users", isLoggedIn, (req, res) => {
         // Render the users page
-        res.render("pages/protected/users.ejs");
+        res.render("pages/protected/users.ejs", { user: req.user });
     });
 
     // Problems page
     app.get("/problems", isLoggedIn, (req, res) => {
         // Render the problems page
-        res.render("pages/protected/problems.ejs");
+        res.render("pages/protected/problems.ejs", { user: req.user });
     });
 
     // Individual problem page
@@ -201,7 +201,19 @@ module.exports = function (app, passport, express) {
             res.redirect("/problems");
         } else {
             // Render the problem page
-            res.render("pages/protected/problem.ejs", {pid: req.query.pid});
+            res.render("pages/protected/problem.ejs", { user: req.user, pid: req.query.pid });
+        }
+    });
+
+    // Profile page
+    app.get("/profile", isLoggedIn, (req, res) => {
+        // Check if a username was specified
+        if(!req.query.username) {
+            // Redirect to list of users
+            res.redirect("/users");
+        } else {
+            // Render the profile page
+            res.render("pages/protected/profile.ejs", { username: req.query.username.toLowerCase(), user: req.user });
         }
     });
 
@@ -231,7 +243,7 @@ module.exports = function (app, passport, express) {
                 switch(req.body.name) {
                     case "name":
                         // Change the user's name
-                        doc.google.name = req.body.value;
+                        doc.google.name = req.body.value.toLowerCase();
                         success = true;
                         break;
                     case "age":
