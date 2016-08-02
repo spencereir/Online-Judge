@@ -4,7 +4,7 @@ socket.on("connect", function () {
 });
 
 // Get the problem data
-socket.on("problem-response", function(problem) => {
+socket.on("problem-response", function(problem) {
     // Fill in problem info
     $("#problem-name").text(problem.name);
     $("#problem-statement").html(marked(problem.statement));
