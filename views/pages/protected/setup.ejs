@@ -30,7 +30,7 @@
                         <div class="panel-body">
 
                             <!-- Show any error messages -->
-                            <% if(typeof errorsObj != "undefined") { %>
+                            <% if(typeof errorsObj != "undefined" && Object.keys(errorsObj).length > 0) { %>
                                 <% var errors = []; %>
                                 <% for(var index in errorsObj) { %>
                                     <% errors.push(errorsObj[index]); %>
