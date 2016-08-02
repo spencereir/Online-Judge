@@ -6,3 +6,12 @@
   -ms-user-select: none;
   user-select: none;
 }
+
+.required-form {
+  color: red;
+  font-size: 18px !important;
+}
+
+#submit-button {
+  width: 100%;
+}

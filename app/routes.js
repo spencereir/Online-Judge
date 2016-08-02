@@ -1,12 +1,16 @@
 // Packages
 // Filesystem operations
 var fs = require("fs");
+// Query strings
+var qs = require("querystring");
 // Simple exists
 var exists = require("simple-exist");
 // User model
 var User = require("./models/user.js");
 // Coloured console messages
 var colours = require("colors/safe");
+// Input validation
+var validator = require("validator");
 
 // Colours theme
 colours.setTheme({
@@ -80,6 +84,94 @@ module.exports = function (app, passport, express) {
     // ===========
     // Other pages
     // ===========
+
+    // First time account setup
+    app.get("/setup", (req, res) => {
+        // Check if the user is logged in and it's their first login
+        if(req.isAuthenticated() && req.user.grader.firstLogin) {
+            // Render the first time setup page
+            res.render("pages/protected/setup.ejs", {
+                errorsObj: req.query // Display any errors
+            });
+        } else {
+            // Go to the homepage
+            res.redirect("/");
+        }
+    });
+
+    // First time account setup
+    app.post("/setup", (req, res) => {
+
+        // Errors
+        var errors = [];
+
+        // Check if any required info was missing
+        if(!req.body.username) {
+            // Add an error
+            errors.push("You must provide a username.");
+        } else {
+            // Check if the username is already taken
+            User.findOne({
+                grader: {
+                    username: req.body.username
+                }
+            }, (err, doc) => {
+                // Check if we found a doc
+                if(typeof doc != "undefined") {
+                    // Add an error
+                    errors.push("That username is already taken. Please choose a different one.");
+                }
+            });
+
+            // Check if the name is long enough or too long
+            if(req.body.username.length < 3) {
+                // Add an error
+                errors.push("Your username must be at least 3 characters long.");
+            } else if(req.body.username.length > 20) {
+                // Add an error
+                errors.push("Your username must be up to 20 characters long.");
+            }
+
+            // Check if username is alphanumeric
+            if(!validator.isAlpha(req.body.username)) {
+                // Add an error
+                errors.push("Your username must be alphanumeric.");
+            }
+        }
+        
+        // Check for errors
+        if(errors.length > 0) {
+            res.redirect("/setup?" + qs.stringify(errors));
+        } else {
+            // Find the user
+            User.findById(req.user._id, (err, doc) => {
+                // Check for errors
+                if(err) {
+                    // Error 404: resource not found
+                    res.sendStatus(404);
+                } else {
+                    // Update info
+                    if(typeof req.body.username != "undefined") {
+                        doc.grader.username = req.body.username;
+                    }
+                    if(req.body.age != "") {
+                        doc.grader.age = req.body.age;
+                    }
+                    if(req.body.school != "") {
+                        doc.grader.school = req.body.school;
+                    }
+                    if(req.body.website != "") {
+                        doc.grader.websitee = req.body.website;
+                    }
+                    doc.grader.firstLogin = false;
+                    // Save the user
+                    doc.save();
+                    // Go to the settings page
+                    res.redirect("/settings");
+                }
+            });
+        }
+    });
 
     // Settings page
     app.get("/settings", isLoggedIn, (req, res) => {
@@ -168,9 +260,12 @@ module.exports = function (app, passport, express) {
 
 // Check if a user is logged in
 function isLoggedIn(req, res, next) {
-
-    // Check if the user session is authenticated
-    if (req.isAuthenticated()) {
+    // Check if it's the user's first time logging in
+    if(req.user.grader.firstLogin) {
+        // Go to the first time setup page
+        res.redirect("/setup");
+    // Check if the user is logged in
+    } else if (req.isAuthenticated()) {
         // Continue to the next page
         return next();
     } else {

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>First Time Setup - LCC Online Judge</title>
+    <meta charset="utf-8">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <!-- Global custom styles -->
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header clearfix">
+            <h3 class="text-muted">LCC Online Judge</h3>
+        </div>
+
+        <div class="jumbotron">
+            <h1 class="text-center">First Time Account Setup</h1>
+            <hr>
+            <div class="row">
+                
+                <!-- Settings -->
+                <div class="col-sm-offset-2 col-sm-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="text-center">Welcome to the LCC Online Judge! Finish setting up your account to continue.</h3>
+                        </div>
+                        <div class="panel-body">
+
+                            <!-- Show any error messages -->
+                            <% if(typeof errorsObj != "undefined") { %>
+                                <% var errors = []; %>
+                                <% for(var index in errorsObj) { %>
+                                    <% errors.push(errorsObj[index]); %>
+                                <% } %>
+                                <div class="alert alert-danger">
+                                    <p>There were errors with your settings:</p>
+                                    <br>
+                                    <ul>
+                                        <% errors.forEach(function(val, index, arr) { %>
+                                            <li><%= val %></li>
+                                        <% }); %>
+                                    </ul>
+                                </div>
+                            <% } %>
+
+                            <!-- Warning message -->
+                            <p>Warning: All this info will be displayed on your public profile.</p>
+
+                            <!-- Account setup form -->
+                            <form action="/setup" method="POST">
+                                <!-- Username -->
+                                <div class="form-group">
+                                    <label for="username">Username: </label>
+                                    <input class="form-control" type="text" id="username" name="username" placeholder="Username">
+                                    <p class="required-form">* Required</p>
+                                </div>
+                                <!-- Age -->
+                                <div class="form-group">
+                                    <label for="age">Age: </label>
+                                    <input class="form-control" type="number" min="0" max="100" id="age" name="age" placeholder="Age">
+                                </div>
+                                <!-- School -->
+                                <div class="form-group">
+                                    <label for="school">School: </label>
+                                    <input class="form-control" type="text" id="school" name="school" placeholder="School">
+                                </div>
+                                <!-- Website -->
+                                <div class="form-group">
+                                    <label for="website">Website/Social Media: </label>
+                                    <input class="form-control" type="url" id="website" name="website" placeholder="Website/Social Media">
+                                </div>
+                                <hr>
+                                <!-- Submit button -->
+                                <button id="submit-button" type="submit" class="btn btn-success">Submit</button>
+                            </form>
+
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <!-- jQuery -->
+    <script src="/jquery-3.1.0.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Socket.io -->
+    <script src="http://localhost:8081/socket.io/socket.io.js"></script>
+    <script src="/js/socket.io/index.js"></script>
+</body>
+</html>
