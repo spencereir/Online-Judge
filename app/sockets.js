@@ -5,6 +5,25 @@ var User = require("./models/user.js");
 // Problems model
 var Problem = require("./models/problem.js");
 
+// Get languages
+var languages;
+// Check if languages file exists
+exists.exists("languages.json", (data) => {
+    if(data) {
+        // Read in languages
+        fs.readFile("languages.json", (err, data) => {
+            // Check for errors
+            if(err) {
+                throw err;
+            } else {
+                languages = JSON.parse(data);
+            }
+        });
+    } else {
+        console.log(colours.error("Error getting languages. Try running the server again."));
+    }
+});
+
 module.exports = function (io, sessionMiddleware) {
 
     // Use authentication middleware
