@@ -1,5 +1,7 @@
 // Filesytem operations
 var fs = require("fs");
+// Check if file exists
+var exists = require("simple-exists");
 // User model
 var User = require("./models/user.js");
 // Problems model
