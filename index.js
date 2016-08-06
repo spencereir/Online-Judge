@@ -92,7 +92,9 @@ require('./config/passport')(passport);
 // Setup session middleware
 var sessionMiddleware = session({
     secret: configSession.sessionSecret,
-    store: new MongoStore({ mongooseConnection: mongoose.connection })
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    resave: true,
+    saveUninitialized: true
 });
 
 // Setup Express
