@@ -141,7 +141,7 @@ module.exports = function (io, sessionMiddleware) {
         // Get code submissions
         socket.on("code-submission", (data) => {
             // Tell the client that we got the code
-            socket.emit("submission-status", "recieved");
+            socket.emit("submission-status", "received");
             // Get this problem's info
             Problem.findOne({ "pid": data.pid }, (err, doc) => {
                 // Check for errors

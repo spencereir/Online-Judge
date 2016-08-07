@@ -3,16 +3,38 @@ socket.on("connect", function () {
     socket.emit("problem-request", pid);
 });
 
-socket.on("code-submission-response", function(data) {
-    console.log(data);
-});
-
+// Get submission status
 socket.on("submission-status", function(data) {
-    console.log("SUBMISSION STATUS: " + data);
+    switch(data) {
+        case "received":
+            $("#submission-status").text("Looking up problem in database...");
+            break;
+        case "found":
+            $("#submission-status").text("Evaluating code...");
+            break;
+        case "evaluated":
+            $("#submission-status").text("Results:");
+            break;
+        default:
+            console.log("Unknown submission status.");
+            break;
+    }
 });
 
 socket.on("submission-results", function(data) {
-    console.log("SUBMISSION RESULTS: " + data);
+    $("div.modal-body").append('<ul id="results-list">');
+
+    data.forEach(function(val, index, arr) {
+        if(index) {
+            $("#results-list").append('<li class="result-correct">Correct</li>');
+        } else {
+            $("#results-list").append('<li class="result-wrong">Wrong</li>');
+        }
+    });
+
+    $("div.modal-body").append("</ul>");
+
+    $("div.modal-content").append('<div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>');
 });
 
 // Get the problem data
@@ -98,6 +120,12 @@ $(document).on("click", ".set-lang", function (event) {
 
 // Submit code
 $("#submit-button").click(function() {
+    // Open the submission modal
+    $("#result-modal").modal({
+        backdrop: false,
+        keyboard: false
+    });
+
     // Create the code object
     var code = {
         code: editor.getValue(),
