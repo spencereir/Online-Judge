@@ -39,36 +39,65 @@
                 <div class="col-sm-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4 id="problem-info" class="text-center">Loading problem...</h3>
+                            <h4 id="problem-info" class="text-center">Loading problem...</h4>
                         </div>
                         <div id="problem-statement" class="panel-body">
                         </div>
                     </div>
+
+                    <!-- Editor controls -->
+                    <div class="row">
+                        <!-- Languages dropdown -->
+                        <div class="col-sm-6">
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" id="lang-button" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    Loading languages...
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" id="lang-dropdown-list" aria-labelledby="lang-button">
+                                    <li>Loading languages...</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Submit button -->
+                        <div class="col-sm-2 col-sm-offset-4">
+                            <button class="btn btn-success pull-right" id="submit-button">Submit Code</button>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <!-- Editor -->
+                    <pre id="editor"></pre>
                 </div>
             </div>
-
         </div>
+    </div> 
 
-        <!-- Scripts -->
-        <!-- jQuery -->
-        <script src="/jquery-3.1.0.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="/bootstrap/js/bootstrap.min.js"></script>
-        <!-- List.js -->
-        <script src="/js/list.min.js"></script>
-        <!-- Socket.io -->
-        <script src="http://localhost:8081/socket.io/socket.io.js"></script>
-        <script src="/js/socket.io/index.js"></script>
-        <!-- MathJax -->
-        <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
-        <!-- Marked -->
-        <script src="/marked.min.js"></script> 
-        <!-- Problem ID -->
-        <script>
+    <!-- Scripts -->
+    <!-- jQuery -->
+    <script src="/jquery-3.1.0.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <!-- List.js -->
+    <script src="/js/list.min.js"></script>
+    <!-- Socket.io -->
+    <script src="http://localhost:8081/socket.io/socket.io.js"></script>
+    <script src="/js/socket.io/index.js"></script>
+    <!-- MathJax -->
+    <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+    <!-- Ace -->
+    <script src="/js/ace/ace.js"></script>
+    <!-- Marked -->
+    <script src="/marked.min.js"></script>
+    <!-- Problem ID -->
+    <script>
             var pid = "<%= pid %>";
         </script>
-        <!-- Problem list scripts -->
-        <script src="/js/problem.js"></script>
+    <!-- Problem list scripts -->
+    <script src="/js/problem.js"></script>
 </body>
 
 </html>

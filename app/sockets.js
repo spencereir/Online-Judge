@@ -1,5 +1,9 @@
 // Filesytem operations
 var fs = require("fs");
+// HackerRank configuration
+var hrConfig = require("./../config/hr.js");
+// HackerRank submissions
+var HackerRank = require("node-hackerrank");
 // Check if file exists
 var exists = require("simple-exist");
 // User model
@@ -130,6 +134,33 @@ module.exports = function (io, sessionMiddleware) {
                 } else {
                     // The user doesn't exist, redirect the user
                     socket.emit("redirect", "/users");
+                }
+            });
+        });
+
+        // Get code submissions
+        socket.on("code-submission", (data) => {
+            // Tell the client that we got the code
+            socket.emit("submission-status", "recieved");
+            // Get this problem's info
+            Problem.findOne({ "pid": data.pid }, (err, doc) => {
+                // Check for errors
+                if(err) {
+                    console.log(err);
+                }
+                // Check if we found a doc
+                if(typeof doc != "undefined") {
+                    // Tell the client that we found the problem in the database
+                    socket.emit("submission-status", "found");
+                    // Run code through HackerRank
+                    HackerRank.evaluateCode(data.code, data.lang, doc.testcases.input, doc.testcases.output, (res) => {
+                        // Send the results to the client
+                        socket.emit("submission-status", "evaluated");
+                        socket.emit("submission-results", res);
+                    });
+                } else {
+                    // Error
+                    console.log("Error");
                 }
             });
         });

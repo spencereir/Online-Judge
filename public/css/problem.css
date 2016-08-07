@@ -1,3 +1,7 @@
 #problem-statement p {
     font-size: 20px;
 }
+
+#editor {
+    height: 500px;
+}
