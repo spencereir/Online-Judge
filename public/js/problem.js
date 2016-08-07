@@ -27,7 +27,7 @@ socket.on("problem-response", function (problem) {
     for (var key in hrLanguages.languages.names) {
         if (hrLanguages.languages.names.hasOwnProperty(key)) {
             // Check if this language is allowed
-            if (languages.indexOf(hrLanguages.languages.names[key]) > -1) {
+            if (languages[0] == undefined || languages.indexOf(hrLanguages.languages.names[key]) > -1) {
                 dropdown.push({
                     name: hrLanguages.languages.names[key],
                     code: hrLanguages.languages.codes[key],
