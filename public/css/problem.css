@@ -1,0 +1,17 @@
+#problem-statement p {
+    font-size: 20px;
+}
+
+#editor {
+    height: 500px;
+}
+
+li.result-correct {
+    color: mediumseagreen;
+    font-weight: bold;
+}
+
+li.result-wrong {
+    color: red;
+    font-weight: bold;
+}

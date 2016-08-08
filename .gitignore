@@ -44,10 +44,7 @@ jspm_packages
 .vscode
 
 # Don't worry
-side.js
+test.js
 
 # Configs
 config
-
-# HackerRank languages
-languages.json

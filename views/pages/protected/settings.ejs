@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Settings - LCC Online Judge</title>
+    <meta charset="utf-8">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <!-- X-editable -->
+    <link rel="stylesheet" href="/bootstrap-editable/css/bootstrap-editable.css">
+    <!-- Global custom styles -->
+    <link rel="stylesheet" href="/css/main.css">
+    <!-- Settings custom styles -->
+    <link rel="stylesheet" href="/css/settings.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header clearfix">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation"><a href="/profile?username=<%= user.grader.username %>">My Profile</a></li>
+                    <li role="presentation" class="active"><a href="/settings">Settings</a></li>
+                    <li role="presentation"><a href="/users">Users</a></li>
+                    <li role="presentation"><a href="/problems">Problems</a></li>
+                    <li role="presentation"><a href="/logout">Logout</a></li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">LCC Online Judge</h3>
+        </div>
+
+        <div class="jumbotron">
+            <h1 class="text-center">Settings</h1>
+            <hr>
+            <div class="row">
+                <!-- Profile -->
+                <div class="col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="text-center">Profile Settings</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="profile-settings-display">
+                                <p class="click-to-change"><i>Click on an item to change it.</i></p>
+                                <!-- Info -->
+                                <p class="info">
+                                    <strong>name</strong>: <a href="#" id="name" data-pk="1" data-type="text" data-url="/changeSettings" data-title="Enter your name"><%= user.google.name %></a><br>
+                                    <strong>age</strong>: <a href="#" id="age" data-pk="2" data-type="number" data-url="/changeSettings" data-title="Enter your age">
+                                        <% if(typeof user.grader.age != "undefined") { %>
+                                            <%= user.grader.age %>
+                                        <% } else { %>
+                                            <%= "click to add" %>
+                                        <% } %>
+                                    </a><br>
+                                    <strong>school</strong>: <a href="#" id="school" data-pk="3" data-type="text" data-url="/changeSettings" data-title="Enter your school">
+                                        <% if(typeof user.grader.school != "undefined") { %>
+                                            <%= user.grader.school %>
+                                        <% } else { %>
+                                            <%= "click to add" %>
+                                        <% } %>
+                                    </a><br>
+                                    <strong>website/social media</strong>: <a href="#" id="website" data-type="text" data-pk="3" data-url="/changeSettings" data-title="Enter your website/social media">
+                                        <% if(typeof user.grader.website != "undefined") { %>
+                                            <%= user.grader.website %>
+                                        <% } else { %>
+                                            <%= "click to add" %>
+                                        <% } %>
+                                    </a><br>
+                                    <strong>bio</strong>: <a href="#" id="bio" data-type="textarea" data-pk="4" data-url="/changeSettings" data-title="Enter your bio">
+                                        <% if(typeof user.grader.bio != "undefined") { %>
+                                            <%= user.grader.bio.trim() _%>
+                                        <% } else { %>
+                                            <%= "click to add" %>
+                                        <% } %>
+                                    </a><br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings -->
+                <div class="col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="text-center">Account Settings</h3>
+                        </div>
+                        <div class="panel-body">
+                            <!-- Display -->
+                            <div id="account-settings-display">
+                                <!-- Info -->
+                                <p class="info">
+                                    <strong>username</strong>: <%= user.grader.username %><br>
+                                    <strong>email</strong>: <%= user.google.email %><br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- jQuery -->
+    <script src="/jquery-3.1.0.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <!-- X-editable -->
+    <script src="/bootstrap-editable/js/bootstrap-editable.min.js"></script>
+    <!-- Socket.io -->
+    <script src="http://localhost:8081/socket.io/socket.io.js"></script>
+    <script src="/js/socket.io/index.js"></script>
+    <!-- Custom script -->
+    <script src="/js/settings.js"></script>
+</body>
+
+</html>

@@ -24,18 +24,12 @@ var session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 // Socket.io
 var io = require("socket.io");
-// HackerRank
-var hr = require("hackerrank-node-wrapper");
 
 // Database configuration
 var configDB = require("./config/database.js");
 
 // Session configuration
 var configSession = require("./config/session.js");
-
-// HackerRank configuration
-var hrConfig = require("./config/hr.js");
-var HackerRank = new hr(hrConfig.apiKey);
 
 // Configuration
 
@@ -51,21 +45,8 @@ colours.setTheme({
 // Set the port to listen on (checks if port was set in options)
 const port = 8080;
 
-// Get HackerRank languages
-HackerRank.getLanguages((err, res) => {
-    // Check for errors
-    if(err) {
-        console.log(Colours.error("Error getting languages from HackerRank. Error: " + err));
-    } else {
-        // Write to a file
-        fs.writeFile("languages.json", res.body, (err) => {
-            // Check for errors
-            if(err) {
-                console.log(Colours.error("Error writing languages from HackerRank. Error: " + err));
-            }
-        });
-    }
-});
+// Make mongoose use bluebird as it's promise library
+mongoose.Promise = require("bluebird");
 
 // Connect to database
 mongoose.connect(configDB.url, (err) => {
@@ -89,7 +70,9 @@ require('./config/passport')(passport);
 // Setup session middleware
 var sessionMiddleware = session({
     secret: configSession.sessionSecret,
-    store: new MongoStore({ mongooseConnection: mongoose.connection })
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    resave: true,
+    saveUninitialized: true
 });
 
 // Setup Express

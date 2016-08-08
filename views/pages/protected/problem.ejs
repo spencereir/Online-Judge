@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Problems - LCC Online Judge</title>
+    <meta charset="utf-8">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <!-- Global custom styles -->
+    <link rel="stylesheet" href="/css/main.css">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="/css/problem.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header clearfix">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation"><a href="/profile?username=<%= user.grader.username %>">My Profile</a></li>
+                    <li role="presentation"><a href="/settings">Settings</a></li>
+                    <li role="presentation"><a href="/users">Users</a></li>
+                    <li role="presentation" class="active"><a href="/problems">Problems</a></li>
+                    <li role="presentation"><a href="/logout">Logout</a></li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">LCC Online Judge</h3>
+        </div>
+
+        <!-- Content -->
+        <div class="jumbotron">
+            <h1 id="problem-name" class="text-center">Loading problem...</h1>
+            <hr>
+            <div class="row">
+
+                <!-- Problem info -->
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 id="problem-info" class="text-center">Loading problem...</h4>
+                        </div>
+                        <div id="problem-statement" class="panel-body">
+                        </div>
+                    </div>
+
+                    <!-- Editor controls -->
+                    <div class="row">
+                        <!-- Languages dropdown -->
+                        <div class="col-sm-6">
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" id="lang-button" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    Loading languages...
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" id="lang-dropdown-list" aria-labelledby="lang-button">
+                                    <li>Loading languages...</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Submit button -->
+                        <div class="col-sm-2 col-sm-offset-4">
+                            <button class="btn btn-success pull-right" id="submit-button">Submit Code</button>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <!-- Editor -->
+                    <pre id="editor"></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results modal -->
+        <div class="modal fade" id="result-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Submission Results</h2>
+                    </div>
+                    <div class="modal-body">
+                        <h4 class="text-center" id="submission-status">Sending code to server...</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <!-- jQuery -->
+    <script src="/jquery-3.1.0.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <!-- List.js -->
+    <script src="/js/list.min.js"></script>
+    <!-- Socket.io -->
+    <script src="http://localhost:8081/socket.io/socket.io.js"></script>
+    <script src="/js/socket.io/index.js"></script>
+    <!-- MathJax -->
+    <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+    <!-- Ace -->
+    <script src="/js/ace/ace.js"></script>
+    <!-- Marked -->
+    <script src="/marked.min.js"></script>
+    <!-- Problem ID -->
+    <script>
+            var pid = "<%= pid %>";
+        </script>
+    <!-- Problem list scripts -->
+    <script src="/js/problem.js"></script>
+</body>
+
+</html>
